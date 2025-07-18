@@ -74,6 +74,12 @@ local function UpdateTarget(guid,targetArg)
   if not guid then return end
   local _, targeting = UnitExists(guid.."target")
   targeting = targetArg or targeting
+  
+  local unit_target_name
+  if targeting then
+    unit_target_name, _ = UnitName(targeting)
+  end
+  
   if targeting ~= tracked_guids[guid].current_target then
     -- only update previous target if there is a current one
     if tracked_guids[guid].current_target then
@@ -81,14 +87,17 @@ local function UpdateTarget(guid,targetArg)
       tracked_guids[guid].previous_target_name = tracked_guids[guid].current_target_name
     end
     tracked_guids[guid].current_target = targeting
-    tracked_guids[guid].current_target_name = UnitName(targeting)
+    tracked_guids[guid].current_target_name = unit_target_name
   end
 end
 
 local function UnitIsPfuiTank(enemy_target_name)
 	if not pfuiEnabled then return false end
 	if not enemy_target_name then return false end
-	if pfUI.uf.raid.tankrole[enemy_target_name] then return true end
+	if pfUI.uf.raid.tankrole[enemy_target_name] then 
+		debug_print("tank recognised")
+		return true
+	end
 	return false
 end
 
