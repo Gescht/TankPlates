@@ -199,7 +199,7 @@ local function InitPlate(plate)
         -- attacking another tank (toggled on via pfui)
         this:SetStatusBarColor(0, 1, 1, 1) -- teal
 
-      elseif not unit.current_target then
+      elseif not unit.casting and not unit.current_target then
         -- unit fleeing
         if unit.previous_target == player_guid then
           -- was attacking you
