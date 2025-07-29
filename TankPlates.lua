@@ -197,7 +197,7 @@ local function InitPlate(plate)
 
       elseif UnitIsPfuiTank(unit.current_target_name) then
         -- attacking another tank (toggled on via pfui)
-        this:SetStatusBarColor(0, 1, 1, 1) -- teal
+        this:SetStatusBarColor(0, 0.5, 1, 1) -- teal
 
       elseif not unit.casting and not unit.current_target then
         -- unit fleeing
@@ -206,7 +206,7 @@ local function InitPlate(plate)
           this:SetStatusBarColor(0, 1, 0, 1) -- green
         elseif UnitIsPfuiTank(unit.previous_target_name) then
           -- fleeing but was attacking another tank (toggled on via pfui)
-          this:SetStatusBarColor(0, 1, 1, 1) -- teal
+          this:SetStatusBarColor(0, 0.5, 1, 1) -- teal
         end
 
       else
